@@ -35,3 +35,12 @@ jobs:
     - name: Typescript test
       run: npm run test
       working-directory: ./DotnetTemplate.Web
+
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: shivahanchate/dotnettemplate:latest
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+
