@@ -36,6 +36,13 @@ jobs:
       run: npm run test
       working-directory: ./DotnetTemplate.Web
 
+    - id: get-sha
+      run: |
+      echo ::set-output name=sha::$( curl -u "u:${{github.token}}" https://api.github.com/repos/some-owner/some-repo/git/ref/heads/master | jq .object.sha | tr -d '"' )
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ steps.get-sha.outputs.sha }}
+
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
