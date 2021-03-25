@@ -21,4 +21,8 @@ WORKDIR /app/DotnetTemplate.Web
 RUN npm install 
 RUN npm run build
 
-ENTRYPOINT ["dotnet","run"]
+# final stage/image
+FROM mcr.microsoft.com/dotnet/runtime:5.0
+WORKDIR /app
+COPY --from=build /app ./
+ENTRYPOINT ["dotnet", "DotnetTemplate.Web.dll"]
