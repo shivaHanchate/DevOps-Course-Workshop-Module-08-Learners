@@ -25,4 +25,4 @@ RUN npm run build
 FROM mcr.microsoft.com/dotnet/runtime:5.0
 WORKDIR /app
 COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "DotnetTemplate.Web.dll"]
+ENTRYPOINT ["dotnet", "run"]
